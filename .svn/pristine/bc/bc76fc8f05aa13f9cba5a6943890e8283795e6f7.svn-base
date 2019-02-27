@@ -1,0 +1,67 @@
+package jy.zhongye.config;
+
+import jy.zhongye.dao.account.AccountDao;
+import jy.zhongye.service.account.AccountService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.filter.PathMatchingFilter;
+import org.apache.shiro.web.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+/**
+ * @program: zhongye *
+ * @description:
+ * @author: Mr.Xuyu
+ * @create: 2019-01-11 10:02
+ **/
+public class URLPathMatchingFilter extends PathMatchingFilter {
+
+    @Autowired
+    AccountDao accountDao;
+
+    @Autowired
+    AccountService accountService;
+
+    @Override
+    protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+
+
+        //请求的url
+        String requestURL = getPathWithinApplication(request);
+        System.out.println("请求的url :"+requestURL);
+        Subject subject = SecurityUtils.getSubject();
+        if (!subject.isAuthenticated()){
+            WebUtils.issueRedirect(request, response, "/login");
+            // 如果没有登录, 直接返回true 进入登录流程
+            return  false;
+        }
+
+        String username=subject.getPrincipal().toString();
+        return true;
+//        String email = TokenManager.getEmail();
+//        List<Upermission> permissions = loginService. upermissions(email);
+//
+//        boolean hasPermission = false;
+//        for (Upermission url : permissions) {
+//
+//            if (url.getUrl().equals(requestURL)){
+//                hasPermission = true;
+//                break;
+//            }
+//        }
+//        if (hasPermission){
+//            return true;
+//        }else {
+//            UnauthorizedException ex = new UnauthorizedException("当前用户没有访问路径" + requestURL + "的权限");
+//            subject.getSession().setAttribute("ex",ex);
+//            WebUtils.issueRedirect(request, response, "/unauthorized");
+//            return false;
+//
+//        }
+
+    }
+}

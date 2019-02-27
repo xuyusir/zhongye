@@ -1,0 +1,60 @@
+package jy.zhongye.dao.user;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Set;
+
+
+/*******************************************************
+ *Copyright (c) 2018 All Rights Reserved.
+ *JDK版本： 1.8
+ *公司名称：
+ *命名空间：
+ *文件名：
+ *版本号：
+ *创建人：
+ *电子邮箱：
+ *创建时间：
+ *描述：
+ *
+ /******************************************************/
+
+@Mapper
+@Repository
+public interface UserRoleDao {
+
+    /***
+     * @method getPassword
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    public String getPassword(@Param("username") String username);
+
+    /***
+     * @method listRoles
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    public Set<String> listRoles(@Param("username") String username);
+
+    /***
+     * @method listPermissions
+     * @description
+     * @author
+     * @date
+     * @param        userName
+     * @return
+     */
+    public Set<String> listPermissions(@Param("userName") String userName);
+
+
+}

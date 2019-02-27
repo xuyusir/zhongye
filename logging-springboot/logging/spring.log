@@ -1,0 +1,24 @@
+2019-02-19 14:53:12.946  INFO 1911 --- [restartedMain] jy.zhongye.ZhongyeApplication            : Starting ZhongyeApplication on bogon with PID 1911 (/Users/yuyu/Documents/code/zhongye/target/classes started by yuyu in /Users/yuyu/Documents/code/zhongye)
+2019-02-19 14:53:12.953  INFO 1911 --- [restartedMain] jy.zhongye.ZhongyeApplication            : No active profile set, falling back to default profiles: default
+2019-02-19 14:53:12.989  INFO 1911 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-02-19 14:53:12.989  INFO 1911 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-02-19 14:53:14.062  INFO 1911 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2019-02-19 14:53:14.083  INFO 1911 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-19 14:53:14.083  INFO 1911 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-19 14:53:14.090  INFO 1911 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yuyu/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-02-19 14:53:14.156  INFO 1911 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-19 14:53:14.156 DEBUG 1911 --- [restartedMain] o.s.web.context.ContextLoader            : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-02-19 14:53:14.156  INFO 1911 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1167 ms
+2019-02-19 14:53:14.263  INFO 1911 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-02-19 14:53:14.805  INFO 1911 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-19 14:53:15.081 DEBUG 1911 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-02-19 14:53:15.196  INFO 1911 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-19 14:53:15.226 DEBUG 1911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-02-19 14:53:15.273 DEBUG 1911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 11 mappings in 'requestMappingHandlerMapping'
+2019-02-19 14:53:15.283 DEBUG 1911 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-02-19 14:53:15.293 DEBUG 1911 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-02-19 14:53:15.421  INFO 1911 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-02-19 14:53:15.479  INFO 1911 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2019-02-19 14:53:15.484  INFO 1911 --- [restartedMain] jy.zhongye.ZhongyeApplication            : Started ZhongyeApplication in 2.869 seconds (JVM running for 33.684)
+2019-02-19 14:54:29.902  INFO 1911 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-19 14:54:29.946  INFO 1911 --- [Thread-8] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

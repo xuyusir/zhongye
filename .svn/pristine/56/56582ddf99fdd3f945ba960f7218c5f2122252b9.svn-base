@@ -1,0 +1,85 @@
+package jy.zhongye.common.shiro;
+
+
+import jy.zhongye.entity.account.Permission;
+import jy.zhongye.entity.account.Role;
+import jy.zhongye.entity.account.User;
+import jy.zhongye.service.account.AccountService;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Component
+public class ShiroRealm extends AuthorizingRealm {
+
+    @Autowired
+    private AccountService accountService;
+
+    /**
+     * 获取身份验证信息
+     * Shiro中，最终是通过 Realm 来获取应用程序中的用户、角色及权限信息的。
+     *
+     * @param authenticationToken 用户身份信息 token
+     * @return 返回封装了用户信息的 AuthenticationInfo 实例
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        //能进入到这里，表示账号已经通过验证了
+        String userName =(String) principalCollection.getPrimaryPrincipal();
+
+        User user=new User();
+        user.setUsername(userName);
+
+//        通过DAO获取角色和权限
+        List<Permission> permissions =accountService.listPermissions(user);
+        List<Role> roles = accountService.listRoles(user);
+
+        //Permission and Roles List turn to Set
+        Set<String> permissionsString=new HashSet<String>();
+        for (Permission p:permissions) {
+            permissionsString.add(p.getPermissionName());
+        }
+        Set<String> rolesString=new HashSet<String>();
+        for (Role r:roles) {
+            rolesString.add(r.getRoleName());
+        }
+//
+//        授权对象
+        SimpleAuthorizationInfo s = new SimpleAuthorizationInfo();
+        //把通过DAO获取到的角色和权限放进去
+
+        s.setStringPermissions(permissionsString);
+        s.setRoles(rolesString);
+
+        return s;
+    }
+
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        //获取账号密码
+        UsernamePasswordToken t = (UsernamePasswordToken) token;
+        String userName= token.getPrincipal().toString();
+        String password= new String(t.getPassword());
+
+        //获取数据库中的密码
+        String passwordInDB =accountService.getPassword(userName);
+
+        //如果为空就是账号不存在，如果不相同就是密码错误，但是都抛出AuthenticationException，而不是抛出具体错误原因，免得给破解者提供帮助信息
+        if(null==passwordInDB || !passwordInDB.equals(password))
+            throw new AuthenticationException();
+
+        //认证信息里存放账号密码, getName() 是当前Realm的继承方法,通常返回当前类名 :databaseRealm
+        SimpleAuthenticationInfo a = new SimpleAuthenticationInfo(userName,password,getName());
+        return a;
+    }
+
+}

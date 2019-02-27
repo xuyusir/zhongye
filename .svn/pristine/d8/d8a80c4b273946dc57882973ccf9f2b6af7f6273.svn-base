@@ -1,0 +1,56 @@
+package jy.zhongye.service.user.userroleserviceimpl;
+
+
+import jy.zhongye.dao.user.UserRoleDao;
+import jy.zhongye.service.user.UserRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+
+@Service("UserRoleService")
+public class UserRoleServiceImpl implements UserRoleService {
+
+    @Autowired
+    UserRoleDao userRoleDao;
+
+    /***
+     * @method getPassword
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    @Override
+    public String getPassword(String username) {
+        return userRoleDao.getPassword(username);
+    }
+
+    /***
+     * @method listRoles
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    @Override
+    public Set<String> listRoles(String username) {
+        return userRoleDao.listRoles(username);
+    }
+
+    /***
+     * @method listPermissions
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    @Override
+    public Set<String> listPermissions(String username) {
+        return userRoleDao.listPermissions(username);
+    }
+}

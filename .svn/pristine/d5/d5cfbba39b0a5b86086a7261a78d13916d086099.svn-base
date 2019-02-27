@@ -1,0 +1,42 @@
+package jy.zhongye.service.user;
+
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+
+@Service
+public interface UserRoleService{
+
+
+    /***
+     * @method getPassword
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    public String getPassword(String username);
+
+    /***
+     * @method listRoles
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    public Set<String> listRoles(String username);
+
+    /***
+     * @method listPermissions
+     * @description
+     * @author
+     * @date
+     * @param        username
+     * @return
+     */
+    public Set<String> listPermissions(String username);
+
+}
