@@ -12,7 +12,7 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-//@Configurationtest
+//@Configuration
 public class ShiroConfig {
     /**
      * 过滤器默认权限表 {anon=anon, authc=authc, authcBasic=authcBasic, logout=logout,
